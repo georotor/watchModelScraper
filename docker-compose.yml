@@ -15,6 +15,8 @@ services:
     build: .
     environment:
       FIREFOX_REMOTE: http://firefox:4444/wd/hub
+    env_file:
+      - ./.env
     depends_on:
       firefox:
         condition: service_healthy
