@@ -3,6 +3,8 @@ version: '3'
 services:
   firefox:
     image: selenium/standalone-firefox:114.0-20230614
+    environment:
+      SE_NODE_MAX_SESSIONS: 4
     expose:
       - 4444
     healthcheck:
@@ -15,6 +17,8 @@ services:
     build: .
     environment:
       FIREFOX_REMOTE: http://firefox:4444/wd/hub
+    env_file:
+      - ./.env
     depends_on:
       firefox:
         condition: service_healthy
